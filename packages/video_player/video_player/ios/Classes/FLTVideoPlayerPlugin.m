@@ -12,6 +12,7 @@
 #endif
 
 int64_t FLTCMTimeToMillis(CMTime time) {
+  if (CMTimeCompare(time, kCMTimeIndefinite) == 0) return INT64_MAX;
   if (time.timescale == 0) return 0;
   return time.value * 1000 / time.timescale;
 }
